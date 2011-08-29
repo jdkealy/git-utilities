@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+if [[ $# -lt 1 || $# -gt 2 ]]; then
+    echo "Usage:
+    git-init <REPO> <COMMIT_MESSAGE>
+    mysql-railsuser <REPO>
+    "
+    exit
+fi
+
+if [[ $# -eq 1 ]]; then
+    repo=$1
+    message='initial commit'
+elif [[ $# -eq 2 ]]; then
+    repo=$1
+    message=$2
+fi
+
+git init
+git add -A
+git commit -m "$message"
+git remote add origin $1
+git push origin master
